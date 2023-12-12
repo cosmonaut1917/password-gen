@@ -3,6 +3,10 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
   var askLength = prompt("What is the length?")
+  if(askLength < 8 || askLength > 128){
+    alert('password length must 8 or 128 characters')
+    return 
+  }
   var askLower = confirm('Do you want lowercase?')
   var askUpper = confirm('Do you want Uppercase?')
   var askSpecial = confirm('Do you want Special characters?')
@@ -12,17 +16,18 @@ function generatePassword() {
   var Numbers = "1234567890"
   var special = "-=\][/,.<>!@#$%^&*()_+"
   var selected = ""
+  
   if (askLower) {
-    selected = selected + lowercase
+    selected += lowercase
   }
   if (askUpper) {
-    selected = selected + Uppercase
+    selected += Uppercase
   }
   if (askNumber) {
-    selected = selected + Numbers
+    selected += Numbers
   }
   if (askSpecial) {
-    selected = selected + special
+    selected += special
   }
   console.log(selected)
 
@@ -30,6 +35,7 @@ function generatePassword() {
 
 
 var password =""
+
   for (var i=0; i < askLength; i++) {
     var randomIndex = Math.floor(Math.random() * selected.length);
     password += selected.charAt(randomIndex);
